@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
@@ -10,10 +12,14 @@ class  PostsPage extends StatelessWidget {
 
    PostsPage ({Key, key}) : super(key: key);
 
+   Map<String, dynamic> arguments;
+
    PostsController _controller;
 
   @override
   Widget build(BuildContext context) {
+     arguments = ModalRoute.of(context).settings.arguments;
+
      _controller = PostsController();
     return  Scaffold(
       appBar: AppBar(
@@ -26,6 +32,10 @@ class  PostsPage extends StatelessWidget {
       ),
       body: GetBuilder<PostsController>(
         init: _controller,
+        initState: (_){
+          log("$arguments}", name: "Argumento de ruta");
+          _controller.loadData(userId: arguments !=  null ? arguments["userId"] : null);
+        },
         builder: (_){
           return ListView.builder(
               itemCount:_.posts.length ,

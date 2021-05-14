@@ -15,13 +15,13 @@ class PostsController extends  GetxController{
 
   @override
   void onReady() {
-    loadData();
+    //loadData();
     super.onReady();
   }
 
 
- Future<void> loadData() async{
-   final res =  await postsRepository.getPosts();
+ Future<void> loadData({int userId}) async{
+   final res =  await postsRepository.getPosts(userId: userId);
    this.posts.addAll(res);
     update();
   }

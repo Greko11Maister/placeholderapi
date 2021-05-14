@@ -33,7 +33,7 @@ class UsersPage extends StatelessWidget {
                 return ListTile(
                   title: Text(_.users[i].name),
                       subtitle: Text(_.users[i].email),
-                  onTap: ()=> _.showPostsofUser(_.users[i]),
+                  onTap: ()=> _.navToPosts(_.users[i]),
 
                 );
               },
